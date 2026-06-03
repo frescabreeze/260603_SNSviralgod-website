@@ -1,0 +1,15 @@
+# ===== 보안: 절대 커밋 금지 =====
+secrets/
+.env
+.env.*
+*.json
+!assets/**/*.json
+.mcp.json
+
+# ===== 도구/캐시 =====
+.omc/
+.claude/
+__pycache__/
+*.pyc
+.DS_Store
+_build_*.py

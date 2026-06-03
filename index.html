@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>SNS 바이럴의 신 — 숏폼으로 손님 모으는 법</title>
+<meta name="description" content="식당·카페·네일·미용실·요가·학원 사장님을 위한 숏폼 떡상 전략. 업종별 실제 떡상 사례 분석과 무료 전략집까지. 첫 3초 기획이 전부입니다." />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="SNS 바이럴의 신 — 숏폼으로 손님 모으는 법" />
+<meta property="og:description" content="팔로워 1천도 조회수 139만. 업종별 실제 떡상 사례를 분석해 드립니다. 무료 전략집 받기." />
+<meta property="og:image" content="https://frescabreeze.github.io/260603_SNSviralgod-website/assets/og-cover.jpg" />
+<meta property="og:url" content="https://frescabreeze.github.io/260603_SNSviralgod-website/" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23141414'/%3E%3Cpath d='M54 12 L26 56 H46 L42 88 L74 40 H52 Z' fill='%23FFD43B' stroke='%23C0392B' stroke-width='3'/%3E%3C/svg%3E" />
+
+<!-- Pretendard -->
+<link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<noscript><style>.reveal{opacity:1 !important; transform:none !important;}</style></noscript>
+
+<style>
+:root{
+  --red:#C0392B; --red-d:#9c2c20; --yellow:#FFD43B;
+  --ink:#141414; --ink2:#1e1e20; --ink3:#2a2a2d;
+  --paper:#FAF7F2; --paper2:#ffffff; --text:#1b1b1b; --muted:#6b6b6b;
+  --line:#e9e3da; --kakao:#FEE500;
+  --radius:18px; --maxw:1120px;
+  --shadow:0 12px 40px rgba(0,0,0,.10); --shadow-d:0 16px 50px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%;}
+body{
+  font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+  color:var(--text); background:var(--paper); line-height:1.62;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px;}
+section{position:relative;}
+.eyebrow{display:inline-block; font-weight:800; letter-spacing:.04em; font-size:.82rem;
+  color:var(--red); background:rgba(192,57,43,.08); padding:7px 14px; border-radius:999px; margin-bottom:18px;}
+.eyebrow.on-dark{color:var(--yellow); background:rgba(255,212,59,.12);}
+h1,h2,h3{letter-spacing:-.02em; line-height:1.18; font-weight:800;}
+.h-sec{font-size:clamp(1.7rem,4.6vw,2.7rem); font-weight:900;}
+.sub{color:var(--muted); font-size:clamp(1rem,2.5vw,1.12rem); margin-top:14px;}
+.hl{color:var(--red);} .hly{color:#caa400;}
+.center{text-align:center;}
+.reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1; transform:none;}
+@media (prefers-reduced-motion: reduce){ .reveal{opacity:1 !important; transform:none !important; transition:none;} }
+
+/* ===== Buttons ===== */
+.btn{display:inline-flex; align-items:center; gap:9px; font-weight:800; font-size:1.02rem;
+  padding:15px 26px; border-radius:14px; border:0; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, background .2s; white-space:nowrap;}
+.btn:active{transform:translateY(1px) scale(.99);}
+.btn-kakao{background:var(--kakao); color:#3b1e1e; box-shadow:0 8px 24px rgba(254,229,0,.4);}
+.btn-kakao:hover{box-shadow:0 12px 32px rgba(254,229,0,.55);}
+.btn-red{background:var(--red); color:#fff; box-shadow:0 8px 24px rgba(192,57,43,.35);}
+.btn-red:hover{background:var(--red-d);}
+.btn-ghost{background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.4);}
+.btn-ghost:hover{border-color:#fff; background:rgba(255,255,255,.08);}
+.btn-line{background:#fff; color:var(--ink); border:1.5px solid var(--line);}
+.btn-line:hover{border-color:var(--red); color:var(--red);}
+.kakao-ic{width:20px;height:20px;flex:none;}
+
+/* ===== Header ===== */
+.nav{position:fixed; top:0; left:0; right:0; z-index:50; transition:background .3s, box-shadow .3s, padding .3s;
+  padding:16px 0;}
+.nav.scrolled{background:rgba(20,20,20,.86); backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(255,255,255,.06); padding:11px 0;}
+.nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+.brand{display:flex; align-items:center; gap:10px; font-weight:900; color:#fff; font-size:1.06rem; letter-spacing:-.02em;}
+.brand .mark{width:30px;height:30px;flex:none;}
+.nav .btn{padding:10px 18px; font-size:.92rem;}
+@media(max-width:520px){ .nav .cta-text{display:none;} .nav .btn{padding:10px 13px;} }
+
+/* ===== Hero ===== */
+.hero{min-height:100svh; display:flex; align-items:center; color:#fff; position:relative; overflow:hidden;
+  background:#0c0c0c;}
+.hero::before{content:""; position:absolute; inset:0;
+  background:url('assets/hero-bg.jpg') center/cover no-repeat; opacity:.95;}
+.hero::after{content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(12,12,12,.55) 0%,rgba(12,12,12,.35) 40%,rgba(12,12,12,.9) 100%);}
+.hero .wrap{position:relative; z-index:2; padding-top:110px; padding-bottom:60px;}
+.hero h1{font-size:clamp(2.1rem,7vw,4.1rem); font-weight:900; letter-spacing:-.03em; line-height:1.12;
+  text-shadow:0 4px 30px rgba(0,0,0,.5);}
+.hero h1 .pop{color:var(--yellow);}
+.hero .lead{margin-top:22px; font-size:clamp(1.05rem,3vw,1.35rem); color:#e9e9e9; max-width:620px; font-weight:500;}
+.hero .ctas{margin-top:36px; display:flex; gap:14px; flex-wrap:wrap;}
+.hero .micro{margin-top:22px; font-size:.9rem; color:#cfcfcf; display:flex; gap:18px; flex-wrap:wrap;}
+.hero .micro span{display:flex; align-items:center; gap:7px;}
+.tag-line{display:inline-flex; align-items:center; gap:8px; font-weight:700; color:var(--yellow);
+  font-size:.92rem; margin-bottom:18px; background:rgba(255,212,59,.1); padding:8px 15px; border-radius:999px; border:1px solid rgba(255,212,59,.25);}
+.scroll-cue{position:absolute; bottom:22px; left:50%; transform:translateX(-50%); z-index:2; color:#fff; opacity:.7; animation:bob 1.8s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+
+/* ===== Generic light section ===== */
+.sec{padding:clamp(64px,9vw,110px) 0;}
+.sec-head{max-width:760px; margin:0 auto 50px; text-align:center;}
+
+/* ===== 6 formulas ===== */
+.formula-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+@media(max-width:840px){ .formula-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:540px){ .formula-grid{grid-template-columns:1fr;} }
+.f-card{background:var(--paper2); border:1px solid var(--line); border-radius:var(--radius); padding:26px 24px;
+  position:relative; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease, border-color .25s;}
+.f-card:hover{transform:translateY(-5px); box-shadow:var(--shadow); border-color:#f0d9aa;}
+.f-num{font-size:2.6rem; font-weight:900; line-height:1; color:var(--red);
+  -webkit-text-stroke:0; opacity:.9; font-feature-settings:"tnum";}
+.f-card h3{font-size:1.18rem; margin:12px 0 8px; font-weight:800;}
+.f-card p{color:var(--muted); font-size:.98rem;}
+.f-card::after{content:""; position:absolute; right:-30px; top:-30px; width:90px; height:90px; border-radius:50%;
+  background:radial-gradient(circle,rgba(255,212,59,.35),transparent 70%);}
+
+/* ===== Cases (dark) ===== */
+.cases{background:var(--ink); color:#fff; position:relative;}
+.cases::before{content:""; position:absolute; inset:0;
+  background:url('assets/case-texture.jpg') center/cover no-repeat; opacity:.5; pointer-events:none;}
+.cases > .wrap{position:relative; z-index:2;}
+.cases .h-sec{color:#fff;}
+.cases .sub{color:#c9c9c9;}
+.disclaimer-pill{display:inline-block; font-size:.8rem; color:#ffce5e; border:1px solid rgba(255,212,59,.3);
+  background:rgba(255,212,59,.07); padding:5px 13px; border-radius:999px; margin-top:14px;}
+.insight{background:linear-gradient(160deg,rgba(192,57,43,.16),rgba(40,40,42,.5));
+  border:1px solid rgba(255,255,255,.1); border-radius:var(--radius); padding:28px 26px; margin:34px 0 30px;}
+.insight h3{font-size:1.12rem; color:var(--yellow); margin-bottom:14px; display:flex; align-items:center; gap:9px;}
+.insight ul{list-style:none; display:grid; gap:12px;}
+.insight li{display:flex; gap:12px; align-items:flex-start; color:#e4e4e4; font-size:.98rem;}
+.insight li b{color:#fff;}
+.insight .ic{flex:none; width:24px; height:24px; border-radius:7px; background:rgba(255,212,59,.16);
+  color:var(--yellow); font-weight:900; display:grid; place-items:center; font-size:.82rem; margin-top:1px;}
+
+/* tabs */
+.tabs{display:flex; gap:8px; overflow-x:auto; padding:6px 2px 12px; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex:none; padding:11px 20px; border-radius:999px; font-weight:800; font-size:.98rem; cursor:pointer;
+  background:rgba(255,255,255,.06); color:#ddd; border:1px solid rgba(255,255,255,.1); transition:all .2s;}
+.tab:hover{background:rgba(255,255,255,.12);}
+.tab.active{background:var(--red); color:#fff; border-color:var(--red); box-shadow:0 6px 18px rgba(192,57,43,.4);}
+
+.cases-panel{margin-top:24px;}
+.expand-row{text-align:center;}
+.btn-expand{background:rgba(255,255,255,.07); color:#fff; border:1px solid rgba(255,255,255,.18);
+  padding:14px 26px; border-radius:14px; font-weight:800; cursor:pointer; transition:all .2s; font-size:1rem;}
+.btn-expand:hover{background:rgba(255,255,255,.14); border-color:var(--yellow);}
+
+/* carousel */
+.carousel{display:none; margin-top:10px;}
+.carousel.open{display:block; animation:fade .4s ease;}
+@keyframes fade{from{opacity:0; transform:translateY(10px);}to{opacity:1; transform:none;}}
+.car-stage{display:grid; grid-template-columns:minmax(0,360px) 1fr; gap:34px; align-items:center;}
+@media(max-width:780px){ .car-stage{grid-template-columns:1fr; gap:22px; justify-items:center;} }
+.slide{display:none;}
+.slide.active{display:block; width:100%;}
+.slide-info{max-width:420px;}
+@media(max-width:780px){ .slide-info{text-align:center;} }
+.handle{font-weight:800; color:#cfcfcf; font-size:.95rem; margin-bottom:8px;}
+.handle a{color:var(--yellow); text-decoration:underline; text-underline-offset:3px;}
+.stat{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin:6px 0 4px;}
+.stat .from{color:#bdbdbd; font-size:1rem; font-weight:700;}
+.stat .arrow{color:var(--red); font-weight:900; font-size:1.3rem;}
+.stat .to{color:var(--yellow); font-weight:900; font-size:clamp(2rem,6vw,2.9rem); line-height:1;
+  text-shadow:0 2px 16px rgba(255,212,59,.25); font-feature-settings:"tnum";}
+.stat-label{color:#9a9a9a; font-size:.82rem; margin-bottom:14px;}
+.lesson{background:rgba(255,255,255,.06); border-left:3px solid var(--yellow); padding:12px 16px; border-radius:0 12px 12px 0;
+  color:#ececec; font-size:1rem;}
+.lesson b{color:#fff;}
+.src{display:inline-block; margin-top:14px; font-size:.85rem; color:#9a9a9a;}
+.src a{color:#cfcfcf; text-decoration:underline; text-underline-offset:2px;}
+
+/* phone mockup */
+.phone{width:100%; max-width:360px; background:#000; border-radius:34px; padding:10px;
+  border:2px solid #333; box-shadow:0 20px 60px rgba(0,0,0,.55); position:relative; margin:0 auto;}
+.phone::before{content:""; position:absolute; top:14px; left:50%; transform:translateX(-50%); width:80px; height:5px;
+  background:#2c2c2c; border-radius:99px; z-index:5;}
+.phone-screen{background:#fff; border-radius:26px; overflow:hidden; min-height:200px;}
+.phone-screen .instagram-media{margin:0 !important; border-radius:26px !important; min-width:0 !important; width:100% !important; box-shadow:none !important;}
+.embed-skel{display:grid; place-items:center; gap:12px; padding:60px 20px; color:#888; text-align:center;}
+.embed-skel .spin{width:34px;height:34px;border:3px solid #eee;border-top-color:var(--red);border-radius:50%;animation:sp 1s linear infinite;}
+@keyframes sp{to{transform:rotate(360deg);}}
+
+/* carousel controls */
+.car-controls{display:flex; align-items:center; justify-content:center; gap:14px; margin-top:26px;}
+.car-arrow{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);
+  color:#fff; font-size:1.3rem; cursor:pointer; display:grid; place-items:center; transition:all .2s;}
+.car-arrow:hover{background:var(--red); border-color:var(--red);}
+.dots{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; max-width:280px;}
+.dot{width:30px;height:30px;border-radius:9px;border:1px solid rgba(255,255,255,.18);background:transparent;
+  color:#bbb; font-weight:800; font-size:.85rem; cursor:pointer; transition:all .2s;}
+.dot.active{background:var(--yellow); color:#3a2e00; border-color:var(--yellow);}
+.car-foot{text-align:center; margin-top:20px;}
+.btn-collapse{background:transparent; border:1px solid rgba(255,255,255,.2); color:#ccc; padding:10px 22px; border-radius:12px; cursor:pointer; font-weight:700;}
+.btn-collapse:hover{border-color:#fff; color:#fff;}
+.counter{color:#9a9a9a; font-weight:800; font-size:.9rem; min-width:54px; text-align:center; font-feature-settings:"tnum";}
+
+/* ===== Products ===== */
+.prod-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+@media(max-width:880px){ .prod-grid{grid-template-columns:1fr;} }
+.p-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:32px 28px; display:flex; flex-direction:column;
+  transition:transform .25s, box-shadow .25s; position:relative;}
+.p-card:hover{transform:translateY(-5px); box-shadow:var(--shadow);}
+.p-card.feat{border:2px solid var(--red); box-shadow:0 14px 40px rgba(192,57,43,.14);}
+.p-badge{position:absolute; top:-13px; left:28px; background:var(--red); color:#fff; font-size:.78rem; font-weight:800; padding:5px 13px; border-radius:999px;}
+.p-card h3{font-size:1.32rem; margin-bottom:6px;}
+.p-card .tagline{color:var(--red); font-weight:800; font-size:.95rem; margin-bottom:16px;}
+.p-card ul{list-style:none; display:grid; gap:10px; margin-bottom:24px; flex:1;}
+.p-card li{display:flex; gap:10px; align-items:flex-start; color:#444; font-size:.97rem;}
+.p-card li::before{content:"✓"; color:var(--red); font-weight:900; flex:none;}
+.p-note{font-size:.86rem; color:var(--muted); text-align:center; margin-top:22px;}
+
+/* ===== Trust ===== */
+.trust{background:linear-gradient(180deg,#fff,#faf6ee);}
+.guide-cta{background:linear-gradient(135deg,var(--ink),#322017); color:#fff; border-radius:24px; padding:40px 34px;
+  display:grid; grid-template-columns:1fr auto; gap:28px; align-items:center; overflow:hidden; position:relative;}
+@media(max-width:720px){ .guide-cta{grid-template-columns:1fr; text-align:center;} }
+.guide-cta::after{content:""; position:absolute; right:-40px; bottom:-40px; width:200px; height:200px;
+  background:radial-gradient(circle,rgba(255,212,59,.3),transparent 70%);}
+.guide-cta h3{font-size:clamp(1.4rem,4vw,1.9rem); position:relative; z-index:2;}
+.guide-cta p{color:#d8d8d8; margin-top:10px; position:relative; z-index:2;}
+.guide-cta .btn{position:relative; z-index:2;}
+.pdf-ic{width:22px;height:22px;}
+
+.steps{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:54px;}
+@media(max-width:760px){ .steps{grid-template-columns:1fr;} }
+.step{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; text-align:center; position:relative;}
+.step .sn{width:46px;height:46px;border-radius:14px;background:var(--red);color:#fff;font-weight:900;font-size:1.3rem;
+  display:grid;place-items:center;margin:0 auto 16px; box-shadow:0 8px 20px rgba(192,57,43,.3);}
+.step h4{font-size:1.12rem; margin-bottom:8px;}
+.step p{color:var(--muted); font-size:.95rem;}
+
+/* FAQ */
+.faq{max-width:780px; margin:56px auto 0;}
+.qa{border:1px solid var(--line); border-radius:14px; margin-bottom:12px; background:#fff; overflow:hidden;}
+.qa summary{padding:20px 22px; font-weight:800; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:14px; font-size:1.03rem;}
+.qa summary::-webkit-details-marker{display:none;}
+.qa summary .chev{transition:transform .25s; color:var(--red); flex:none; font-size:1.2rem;}
+.qa[open] summary .chev{transform:rotate(45deg);}
+.qa .ans{padding:0 22px 20px; color:#555; font-size:.98rem;}
+
+/* ===== Final CTA ===== */
+.final{background:var(--ink); color:#fff; text-align:center; position:relative; overflow:hidden;}
+.final::before{content:""; position:absolute; inset:0; background:url('assets/og-cover.jpg') center/cover; opacity:.32;}
+.final::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,20,20,.7),rgba(20,20,20,.92));}
+.final .wrap{position:relative; z-index:2;}
+.final h2{font-size:clamp(1.9rem,5.5vw,3.1rem); font-weight:900;}
+.final h2 .pop{color:var(--yellow);}
+.final p{color:#dcdcdc; margin:18px auto 34px; max-width:560px; font-size:1.1rem;}
+
+/* footer */
+footer{background:#0c0c0c; color:#9a9a9a; padding:48px 0 60px; font-size:.9rem;}
+footer .brand{margin-bottom:16px;}
+footer .fnote{max-width:720px; line-height:1.7;}
+footer a{color:#cfcfcf; text-decoration:underline; text-underline-offset:2px;}
+.foot-links{display:flex; gap:18px; flex-wrap:wrap; margin:18px 0;}
+
+/* sticky mobile cta */
+.sticky-cta{position:fixed; left:0; right:0; bottom:0; z-index:45; padding:11px 16px calc(11px + env(safe-area-inset-bottom));
+  background:rgba(20,20,20,.92); backdrop-filter:blur(10px); display:none; box-shadow:0 -2px 20px rgba(0,0,0,.3);}
+.sticky-cta .btn{width:100%; justify-content:center;}
+@media(max-width:720px){ .sticky-cta{display:block;} body{padding-bottom:74px;} .sticky-cta.hide{transform:translateY(120%); transition:transform .3s;} }
+
+/* iOS escape overlay (reused from bridge) */
+.o-overlay{position:fixed; inset:0; z-index:100; background:rgba(0,0,0,.72); backdrop-filter:blur(4px);
+  display:none; align-items:center; justify-content:center; padding:24px;}
+.o-overlay.show{display:flex;}
+.o-card{background:#fff; color:var(--ink); border-radius:22px; padding:32px 26px; max-width:380px; width:100%; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,.5);}
+.o-card h2{font-size:1.4rem; line-height:1.3; margin-bottom:8px;}
+.o-card h2 em{color:var(--red); font-style:normal;}
+.o-card .o-desc{color:var(--muted); font-size:.92rem; margin-bottom:20px;}
+.o-steps{display:grid; gap:12px; text-align:left; margin-bottom:22px;}
+.o-step{display:flex; gap:12px; align-items:center; background:var(--paper); border-radius:12px; padding:12px 14px;}
+.o-step .num{flex:none; width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.9rem;}
+.o-step p{font-size:.92rem;}
+.o-close{background:var(--ink); color:#fff; border:0; padding:13px; width:100%; border-radius:12px; font-weight:800; cursor:pointer; font-size:1rem;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="SNS 바이럴의 신">
+      <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#C0392B"/><path d="M54 12 L26 56 H46 L42 88 L74 40 H52 Z" fill="#FFD43B"/></svg>
+      <span>SNS 바이럴의 신</span>
+    </a>
+    <button class="btn btn-kakao js-kakao" type="button">
+      <svg class="kakao-ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="#3b1e1e" d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7-.2.7-.7 2.6-.8 3-.1.5.2.5.4.4.2-.1 2.6-1.8 3.7-2.5.7.1 1.3.1 2 .1 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
+      <span class="cta-text">카카오 상담</span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <span class="tag-line">📈 식당·카페·네일·미용실·요가·학원 사장님을 위한</span>
+    <h1>숏폼으로 손님 모으는 법,<br><span class="pop">무료로 알려드려요</span></h1>
+    <p class="lead">팔로워 1천 명도 조회수 139만이 나옵니다. 승부는 ‘무엇을 찍을지’ — 기획에서 갈립니다. 업종별 실제 떡상 사례를 분석해 드릴게요.</p>
+    <div class="ctas">
+      <button class="btn btn-kakao js-kakao" type="button">
+        <svg class="kakao-ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="#3b1e1e" d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7-.2.7-.7 2.6-.8 3-.1.5.2.5.4.4.2-.1 2.6-1.8 3.7-2.5.7.1 1.3.1 2 .1 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
+        카카오로 무료 상담하기
+      </button>
+      <a class="btn btn-ghost" href="#cases">떡상 사례 먼저 보기</a>
+    </div>
+    <div class="micro">
+      <span>✅ 1:1 맞춤 기획</span>
+      <span>✅ 업종별 사례 기반</span>
+      <span>✅ 무료 전략집 증정</span>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#formula" aria-label="아래로">▼</a>
+</section>
+
+<!-- 6 FORMULAS -->
+<section class="sec" id="formula">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">떡상은 우연이 아닙니다</span>
+      <h2 class="h-sec">조회수 터지는 숏폼,<br><span class="hl">떡상 6대 공식</span></h2>
+      <p class="sub">수백 개의 바이럴 릴스를 분석해 공통점만 뽑았습니다. 이 6가지가 첫 3초와 도달을 결정합니다.</p>
+    </div>
+    <div class="formula-grid">
+      <article class="f-card reveal"><div class="f-num">01</div><h3>0~3초 ‘갭’ 훅</h3><p>첫 3초에 호기심·공감의 간극을 던집니다. 무음 인트로 없이, 시작하자마자 궁금하게.</p></article>
+      <article class="f-card reveal"><div class="f-num">02</div><h3>빠른 점프컷 + 시각 만족</h3><p>지루할 틈 없는 점프컷에 클로즈업·비포애프터·ASMR로 ‘보는 맛’을 채웁니다.</p></article>
+      <article class="f-card reveal"><div class="f-num">03</div><h3>0초부터 사운드</h3><p>처음부터 음악·보이스오버·현장음·ASMR. 소리가 몰입과 체류시간을 만듭니다.</p></article>
+      <article class="f-card reveal"><div class="f-num">04</div><h3>정보 안내형 자막</h3><p>한 줄씩 떠오르는 자막으로 흐름을 안내합니다. 한글은 영상이 아닌 자막으로.</p></article>
+      <article class="f-card reveal"><div class="f-num">05</div><h3>저장·공유 최적화</h3><p>캡션에 정보를 풀로 적고, 지역·주제 해시태그로 ‘저장하고 싶은’ 콘텐츠를 만듭니다.</p></article>
+      <article class="f-card reveal"><div class="f-num">06</div><h3>희소성·권위 트리거</h3><p>웨이팅·‘현지인만 아는’·전문가/셀럽 차용으로 신뢰와 ‘지금 가야 할 이유’를 더합니다.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- CASES (dark) -->
+<section class="cases sec" id="cases">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:30px;">
+      <span class="eyebrow on-dark">업종별 떡상 사례관</span>
+      <h2 class="h-sec">작은 계정도 터집니다<br>업종별 <span class="hly">실제 떡상 사례</span></h2>
+      <p class="sub">우리 업종은 어떤 영상이 터질까요? 같은 업종의 바이럴 릴스를 직접 분석해 보세요.</p>
+      <div class="disclaimer-pill">※ 아래는 ‘분석 대상’ 사례입니다. 자사 제작물이 아니며, 각 영상은 원작자 계정으로 연결됩니다.</div>
+    </div>
+
+    <div class="insight reveal">
+      <h3>💡 왜 작은 계정도 터지는가</h3>
+      <ul>
+        <li><span class="ic">1</span><div><b>팔로워는 무관합니다.</b> 첫 3초의 호기심·공감 갭이 전부 — 팔로워 1천 계정도 조회수 139만이 나옵니다.</div></li>
+        <li><span class="ic">2</span><div><b>저장형(정보) vs 공유형(공감).</b> 둘 다 팔로워 없이도 도달이 폭발합니다.</div></li>
+        <li><span class="ic">3</span><div><b>폰 한 대 + 자막이면 충분.</b> 승부는 ‘무엇을 찍을지(기획)’ — 그게 우리가 하는 일입니다.</div></li>
+        <li><span class="ic">4</span><div><b>전문성 한 줄</b>(원장·트레이너·치료사)이 신뢰를 보완합니다.</div></li>
+        <li><span class="ic">5</span><div><b>계단식 성장의 실증.</b> 조용하던 계정의 한 편이 평소 중앙값의 <b>64~204배</b>로 점프합니다.</div></li>
+      </ul>
+    </div>
+
+    <div class="tabs" id="tabs" role="tablist"></div>
+
+    <div class="cases-panel">
+      <div class="expand-row" id="expandRow">
+        <button class="btn-expand" id="expandBtn" type="button">📂 사례 펼쳐보기</button>
+      </div>
+      <div class="carousel" id="carousel" aria-live="polite">
+        <div class="car-stage">
+          <div class="phone"><div class="phone-screen" id="phoneScreen"></div></div>
+          <div class="slide-info" id="slideInfo"></div>
+        </div>
+        <div class="car-controls">
+          <button class="car-arrow" id="prevBtn" aria-label="이전">‹</button>
+          <div class="counter" id="counter"></div>
+          <button class="car-arrow" id="nextBtn" aria-label="다음">›</button>
+        </div>
+        <div class="dots" id="dots" style="margin:16px auto 0;"></div>
+        <div class="car-foot"><button class="btn-collapse" id="collapseBtn" type="button">접기 ▲</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="sec" id="products">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">함께 만드는 방법</span>
+      <h2 class="h-sec">사장님은 장사에 집중,<br><span class="hl">기획·제작은 저희가</span></h2>
+      <p class="sub">업종과 상황에 맞춰 구성해 드립니다. 먼저 부담 없이 상담으로 시작하세요.</p>
+    </div>
+    <div class="prod-grid">
+      <article class="p-card reveal">
+        <h3>숏폼 단품</h3>
+        <div class="tagline">우선 한 편, 가볍게 시작</div>
+        <ul>
+          <li>업종 맞춤 기획 1편</li>
+          <li>촬영 가이드 / 대본 제공</li>
+          <li>편집·자막·썸네일 포함</li>
+          <li>업로드 세팅(캡션·해시태그)</li>
+        </ul>
+        <button class="btn btn-line js-kakao" type="button">상담 문의</button>
+      </article>
+      <article class="p-card feat reveal">
+        <span class="p-badge">가장 인기</span>
+        <h3>월 패키지 · 베이직</h3>
+        <div class="tagline">꾸준함이 알고리즘을 만듭니다</div>
+        <ul>
+          <li>월 4~6편 기획·제작</li>
+          <li>업종별 떡상 공식 적용</li>
+          <li>채널 컨셉·시리즈 설계</li>
+          <li>성과 리뷰 & 다음 달 방향</li>
+        </ul>
+        <button class="btn btn-red js-kakao" type="button">상담 문의</button>
+      </article>
+      <article class="p-card reveal">
+        <h3>월 패키지 · 프로</h3>
+        <div class="tagline">본격 확장·전환 설계</div>
+        <ul>
+          <li>월 8편+ 기획·제작</li>
+          <li>릴스/숏츠 멀티 채널 운영</li>
+          <li>예약·문의 전환 동선 설계</li>
+          <li>월간 리포트 & 전략 미팅</li>
+        </ul>
+        <button class="btn btn-line js-kakao" type="button">상담 문의</button>
+      </article>
+    </div>
+    <p class="p-note">※ 결제 페이지가 아닙니다. 업종·예산·목표에 맞춰 상담 후 구성해 드립니다.</p>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="sec trust" id="trust">
+  <div class="wrap">
+    <div class="guide-cta reveal">
+      <div>
+        <h3>무료 「숏폼 떡상 전략집」 PDF</h3>
+        <p>상담 전에 먼저 읽어보세요. 자영업 숏폼의 핵심만 정리한 무료 가이드입니다.</p>
+      </div>
+      <a class="btn btn-kakao" id="guideBtn" href="https://frescabreeze.github.io/260603_Shortform_Bridge/strategy-guide.pdf" target="_blank" rel="noopener">
+        <svg class="pdf-ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="#3b1e1e" d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM8 13h2a2 2 0 1 1 0 4H9v2H8v-6zm1 1v2h1a1 1 0 0 0 0-2H9z"/></svg>
+        전략집 무료로 받기
+      </a>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:72px; margin-bottom:0;">
+      <span class="eyebrow">작업 3단계</span>
+      <h2 class="h-sec">상담부터 업로드까지, <span class="hl">3단계</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="sn">1</div><h4>상담 · 진단</h4><p>카카오로 업종·상황을 알려주시면 방향과 컨셉을 함께 잡습니다.</p></div>
+      <div class="step reveal"><div class="sn">2</div><h4>기획 · 제작</h4><p>떡상 공식에 맞춰 기획하고, 촬영 가이드와 편집까지 진행합니다.</p></div>
+      <div class="step reveal"><div class="sn">3</div><h4>업로드 · 개선</h4><p>캡션·해시태그까지 세팅해 올리고, 성과를 보며 다음 편을 개선합니다.</p></div>
+    </div>
+
+    <div class="faq">
+      <details class="qa reveal"><summary>팔로워가 거의 없는데 효과가 있을까요?<span class="chev">＋</span></summary><div class="ans">네. 숏폼 도달은 팔로워 수가 아니라 ‘첫 3초’와 콘텐츠 자체로 결정됩니다. 실제로 팔로워 1천 명대 계정도 조회수 100만 이상이 나온 사례가 많습니다. 위 ‘업종별 사례관’에서 직접 확인해 보세요.</div></details>
+      <details class="qa reveal"><summary>촬영은 누가 하나요? 장비가 없어요.<span class="chev">＋</span></summary><div class="ans">스마트폰 한 대면 충분합니다. 무엇을 어떻게 찍을지 촬영 가이드와 대본을 드리고, 편집·자막·썸네일은 저희가 맡습니다.</div></details>
+      <details class="qa reveal"><summary>우리 업종도 가능한가요?<span class="chev">＋</span></summary><div class="ans">식당·카페·네일·미용실·요가/필라테스·학원 등 오프라인 매장 업종을 중심으로 진행합니다. 업종별 떡상 패턴이 다르기 때문에, 사례 분석을 바탕으로 맞춤 기획해 드립니다.</div></details>
+      <details class="qa reveal"><summary>비용은 어떻게 되나요?<span class="chev">＋</span></summary><div class="ans">업종·제작 편수·목표에 따라 달라집니다. 카카오 상담에서 상황을 들은 뒤 맞는 구성을 제안해 드립니다. 상담은 무료입니다.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="sec final" id="contact">
+  <div class="wrap">
+    <h2>지금 우리 가게 영상,<br><span class="pop">무료로 진단받아 보세요</span></h2>
+    <p>어떤 콘텐츠가 우리 업종에서 터지는지, 카카오로 부담 없이 물어보세요. 상담은 무료입니다.</p>
+    <button class="btn btn-kakao js-kakao" type="button" style="font-size:1.12rem; padding:17px 32px;">
+      <svg class="kakao-ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="#3b1e1e" d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7-.2.7-.7 2.6-.8 3-.1.5.2.5.4.4.2-.1 2.6-1.8 3.7-2.5.7.1 1.3.1 2 .1 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
+      카카오로 무료 상담 시작하기
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="brand" style="color:#fff;">
+      <svg class="mark" style="width:26px;height:26px;" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#C0392B"/><path d="M54 12 L26 56 H46 L42 88 L74 40 H52 Z" fill="#FFD43B"/></svg>
+      <span>SNS 바이럴의 신</span>
+    </div>
+    <div class="foot-links">
+      <a href="#formula">떡상 공식</a>
+      <a href="#cases">사례관</a>
+      <a href="#products">상품</a>
+      <a href="#trust">전략집</a>
+      <button class="js-kakao" style="background:none;border:0;color:#cfcfcf;text-decoration:underline;cursor:pointer;font:inherit;padding:0;">카카오 상담</button>
+    </div>
+    <p class="fnote">‘업종별 사례관’에 표시된 영상·계정은 시장 분석을 위한 <b>참고(분석 대상) 사례</b>이며, 본사가 제작했거나 본사와 제휴했음을 의미하지 않습니다. 각 콘텐츠의 저작권은 원작자에게 있으며, 임베드는 인스타그램 공식 방식으로 원작자 게시물에 연결됩니다. 본 페이지는 특정 조회수·매출 등 성과를 보장하지 않습니다.</p>
+    <p style="margin-top:14px;color:#666;">© 2026 SNS 바이럴의 신. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- sticky mobile cta -->
+<div class="sticky-cta" id="stickyCta">
+  <button class="btn btn-kakao js-kakao" type="button">
+    <svg class="kakao-ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="#3b1e1e" d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7-.2.7-.7 2.6-.8 3-.1.5.2.5.4.4.2-.1 2.6-1.8 3.7-2.5.7.1 1.3.1 2 .1 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
+    카카오로 무료 상담하기
+  </button>
+</div>
+
+<!-- iOS escape overlay -->
+<div class="o-overlay" id="iosOverlay">
+  <div class="o-card">
+    <h2>한 번만 더!<br><em>Safari</em>로 열어주세요</h2>
+    <p class="o-desc">인앱 브라우저에서는 카카오 연결이 막힐 수 있어요.</p>
+    <div class="o-steps">
+      <div class="o-step"><span class="num">1</span><p>오른쪽 위 <b>•••</b> (점 세 개) 버튼을 누르세요</p></div>
+      <div class="o-step"><span class="num">2</span><p><b>Safari로 열기</b>(또는 기본 브라우저로 열기) 선택</p></div>
+      <div class="o-step"><span class="num">3</span><p>다시 <b>상담하기</b> 버튼을 누르면 카톡으로 연결돼요</p></div>
+    </div>
+    <button class="o-close" id="iosClose" type="button">알겠어요</button>
+  </div>
+</div>
+
+<script>
+/* ===================== 데이터 ===================== */
+var INDUSTRIES = [
+  { key:"food",   label:"음식점" },
+  { key:"nail",   label:"네일" },
+  { key:"hair",   label:"헤어" },
+  { key:"yoga",   label:"요가·체형" },
+  { key:"academy",label:"학원" }
+];
+var CASES = {
+  food:[
+    {h:"ruri.food",        s:"DVseA9bEf_l", v:"537만", f:"9.4만",  l:"호기심 훅 + tableside ASMR + 셀럽 권위"},
+    {h:"mukgenie",         s:"DVvewd7CVyz", v:"460만", f:"16만",   l:"무자막 비트싱크 비주얼 (특이점)"},
+    {h:"josunclass",       s:"DW1WCkzkxBF", v:"296만", f:"10.7만", l:"시의성 훅 + 웨이팅 희소성"},
+    {h:"muk_tteul",        s:"DYKEVaAz20I", v:"238만", f:"8.4만",  l:"“정량 맞나요?” 호기심 + 현장음"},
+    {h:"h_mochi_bungeo",   s:"DVYDooFElh-", v:"105만", f:"2.1만",  l:"소형 계정 떡상 (소금빵 트럭)"},
+    {h:"matzip_yo1",       s:"DVH3u6NE8pc", v:"103만", f:"3.5만",  l:"국물 붓기 ASMR"},
+    {h:"seoul_foodstagram",s:"DWiZZ8ik24O", v:"101만", f:"11.3만", l:"의외성 조합 훅"},
+    {h:"heredaegu",        s:"DVr66f0jBYf", v:"80만",  f:"23.6만", l:"“아니 국밥집에서?” 반전 훅"},
+    {h:"muckza_zzae",      s:"DXInPXJAS3V", v:"58만",  f:"4.9만",  l:"호기심 + 소형 아웃라이어"},
+    {h:"all.about.daejeon",s:"DVIgTHukZ5a", v:"12.7만",f:"20.5만", l:"히든젬 + 공유 유도"}
+  ],
+  nail:[
+    {h:"you_wisdom_",      s:"DX80XkeNnfy", v:"383만", f:"5.7천",  l:"POV 무자막 손톱 b-roll"},
+    {h:"kimhyangkee",      s:"DYWqveWSyEk", v:"277만", f:"3.8천",  l:"7초 공감 실패담"},
+    {h:"ministry_of_nail", s:"DWtDYD_vpkx", v:"196만", f:"2.2만",  l:"“망한 자석젤 원인 딱 하나” 교육"},
+    {h:"refuss_gimhaejangyu",s:"DYO7-MOzklZ",v:"176만",f:"1.4만",  l:"네일샵 직원 군무 스킷"},
+    {h:"youhwa_salon",     s:"DXt4Qz-Ed1n", v:"94만",  f:"2.7천",  l:"네일팁 포장 ASMR (평소의 161배)"}
+  ],
+  hair:[
+    {h:"harimmy_",         s:"DX86yFduVKT", v:"47만",  f:"2.7만",  l:"“대박사건!!!” 비포애프터"},
+    {h:"salim_attic",      s:"DXtvNk5CcJl", v:"47만",  f:"1.2만",  l:"“원장님이 루틴 알려주더라” 스토리 (댓글 1.4만)"},
+    {h:"ayoon_______",     s:"DYsBCj6Ro0Z", v:"41만",  f:"1.7만",  l:"윤곽펌 process montage"},
+    {h:"growing_rosy_w",   s:"DXg9ZApieA6", v:"25만",  f:"7.4천",  l:"원장 직접 볼륨펌 demo (평소의 64배)"},
+    {h:"do_yu__",          s:"DWgcuZPCbXF", v:"20만",  f:"3.1만",  l:"중단발 비포애프터 (평소의 52배)"}
+  ],
+  yoga:[
+    {h:"ianpt_studio",     s:"DYp87elT4Q_", v:"328만", f:"2.5만",  l:"수건 목어깨 “극락 체험” (평소의 96배)"},
+    {h:"correct_wootae",   s:"DYMcJGUJrgd", v:"261만", f:"4.6천",  l:"전방경사 3D 교육 + 저장·공유"},
+    {h:"bodyroutine.note", s:"DYf9aJoTebn", v:"151만", f:"5.3천",  l:"전방경사 자기 전 루틴"},
+    {h:"bobom_._",         s:"DX8AbMdzhj8", v:"126만", f:"6.6만",  l:"“이런 분은 인스타 운동하면 안돼요”"},
+    {h:"premium___rehap",  s:"DXyeAkUT38S", v:"92만",  f:"4.8천",  l:"물리치료사 거북목 교육"}
+  ],
+  academy:[
+    {h:"taett118069",      s:"DXHgg2AEnsJ", v:"500만", f:"3.2천",  l:"시험기간 공감툰"},
+    {h:"mightyratel",      s:"DYRdDKfvE1_", v:"236만", f:"4천",    l:"선생님 공감 스킷"},
+    {h:"k._th__10",        s:"DXjWYo1CRGi", v:"139만", f:"1천",    l:"역사 공부법 유머"},
+    {h:"duhyeoncheon",     s:"DXeL3yrkQv0", v:"101만", f:"2.3만",  l:"시험당일 전략 4가지 + Day챌린지 (학원 포지션 최적)"},
+    {h:"lim_mother",       s:"DVQBVU-E_td", v:"41만",  f:"4.6만",  l:"“학원 다녀왔습니다” testimonial (평소의 204배)"}
+  ]
+};
+
+/* ===================== 인앱 브라우저 우회 (브릿지 재사용) ===================== */
+(function(){
+  var KAKAO = "https://pf.kakao.com/_JSJGX/chat";
+  var ua = (navigator.userAgent||"").toLowerCase();
+  var isInApp = /instagram|fban|fbav|fb_iab|fbios|kakaotalk|naver|line\/|daum|everytimeapp|trill|musical_ly|bytedance/.test(ua);
+  var isIOS = /iphone|ipad|ipod/.test(ua) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
+  var isAndroid = /android/.test(ua);
+  var overlay = document.getElementById("iosOverlay");
+
+  function goKakao(){
+    if(isInApp && isAndroid){
+      var clean = KAKAO.replace(/^https?:\/\//,"");
+      var intent = "intent://"+clean+"#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url="+encodeURIComponent(KAKAO)+";end";
+      var t = Date.now();
+      location.href = intent;
+      setTimeout(function(){ if(Date.now()-t<1600){ location.href = KAKAO; } },1200);
+      return;
+    }
+    location.href = KAKAO;
+  }
+  window.__goKakao = function(){
+    if(isInApp && isIOS){ overlay.classList.add("show"); return; }
+    goKakao();
+  };
+  Array.prototype.forEach.call(document.querySelectorAll(".js-kakao"), function(b){
+    b.addEventListener("click", function(e){ e.preventDefault(); window.__goKakao(); });
+  });
+  document.getElementById("iosClose").addEventListener("click", function(){ overlay.classList.remove("show"); });
+  overlay.addEventListener("click", function(e){ if(e.target===overlay){ overlay.classList.remove("show"); } });
+})();
+
+/* ===================== 인스타 임베드 로더 ===================== */
+var IG_LOADED = false;
+function loadIG(cb){
+  if(window.instgrm && window.instgrm.Embeds){ cb && cb(); return; }
+  if(IG_LOADED){ var iv=setInterval(function(){ if(window.instgrm&&window.instgrm.Embeds){clearInterval(iv);cb&&cb();} },200); return; }
+  IG_LOADED = true;
+  var sc = document.createElement("script");
+  sc.async = true; sc.src = "https://www.instagram.com/embed.js";
+  sc.onload = function(){ cb && cb(); };
+  document.body.appendChild(sc);
+}
+function processIG(){ if(window.instgrm && window.instgrm.Embeds){ try{ window.instgrm.Embeds.process(); }catch(e){} } }
+
+/* ===================== 캐러셀 ===================== */
+var state = { ind:"food", idx:0, open:false };
+var loadedEmbeds = {}; // industry -> bool
+
+var tabsEl = document.getElementById("tabs");
+var phoneScreen = document.getElementById("phoneScreen");
+var slideInfo = document.getElementById("slideInfo");
+var dotsEl = document.getElementById("dots");
+var counterEl = document.getElementById("counter");
+var carousel = document.getElementById("carousel");
+var expandRow = document.getElementById("expandRow");
+
+function igBlock(shortcode){
+  return '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/'+shortcode+
+    '/" data-instgrm-version="14" style="background:#fff;margin:0;padding:0;width:100%;min-width:0;"></blockquote>';
+}
+
+// 탭 렌더
+INDUSTRIES.forEach(function(it){
+  var b = document.createElement("button");
+  b.className = "tab"+(it.key===state.ind?" active":"");
+  b.textContent = it.label;
+  b.setAttribute("role","tab");
+  b.addEventListener("click", function(){ selectIndustry(it.key); });
+  tabsEl.appendChild(b);
+});
+
+function selectIndustry(key){
+  if(key===state.ind) return;
+  state.ind = key; state.idx = 0;
+  Array.prototype.forEach.call(tabsEl.children, function(b,i){
+    b.classList.toggle("active", INDUSTRIES[i].key===key);
+  });
+  if(state.open){ renderCarousel(true); } // 펼친 상태면 새 업종으로 다시 그림
+}
+
+function renderCarousel(forceLoad){
+  var list = CASES[state.ind];
+  // 슬라이드(폰 화면): 모든 임베드 blockquote를 한 번에 넣고 active만 표시
+  var html = "";
+  list.forEach(function(c,i){
+    html += '<div class="slide'+(i===state.idx?" active":"")+'" data-i="'+i+'">'+ igBlock(c.s) +'</div>';
+  });
+  phoneScreen.innerHTML = html;
+  // 임베드 처리 (업종별 1회)
+  if(forceLoad && !loadedEmbeds[state.ind]){
+    loadedEmbeds[state.ind] = true;
+    loadIG(function(){ processIG(); });
+  } else {
+    loadIG(function(){ processIG(); });
+  }
+  renderInfo();
+  renderDots();
+}
+
+function renderInfo(){
+  var c = CASES[state.ind][state.idx];
+  slideInfo.innerHTML =
+    '<div class="handle">@<a href="https://www.instagram.com/'+c.h+'/" target="_blank" rel="noopener">'+c.h+'</a> 분석 사례</div>'+
+    '<div class="stat"><span class="from">팔로워 '+c.f+'</span><span class="arrow">→</span><span class="to">'+c.v+'</span></div>'+
+    '<div class="stat-label">팔로워 대비 ‘조회수’ — 팔로워 수와 무관한 도달</div>'+
+    '<div class="lesson"><b>교훈.</b> '+c.l+'</div>'+
+    '<div class="src">출처: <a href="https://www.instagram.com/reel/'+c.s+'/" target="_blank" rel="noopener">원작자 게시물 보기 ↗</a></div>';
+}
+
+function renderDots(){
+  var n = CASES[state.ind].length;
+  var html = "";
+  for(var i=0;i<n;i++){ html += '<button class="dot'+(i===state.idx?" active":"")+'" data-i="'+i+'">'+(i+1)+'</button>'; }
+  dotsEl.innerHTML = html;
+  Array.prototype.forEach.call(dotsEl.children, function(d){
+    d.addEventListener("click", function(){ goTo(parseInt(d.getAttribute("data-i"),10)); });
+  });
+  counterEl.textContent = (state.idx+1)+" / "+n;
+}
+
+function showActiveSlide(){
+  Array.prototype.forEach.call(phoneScreen.children, function(s,i){
+    s.classList.toggle("active", i===state.idx);
+  });
+  renderInfo(); renderDots(); processIG();
+}
+function goTo(i){
+  var n = CASES[state.ind].length;
+  state.idx = (i+n)%n;
+  showActiveSlide();
+}
+document.getElementById("prevBtn").addEventListener("click", function(){ goTo(state.idx-1); });
+document.getElementById("nextBtn").addEventListener("click", function(){ goTo(state.idx+1); });
+
+document.getElementById("expandBtn").addEventListener("click", function(){
+  state.open = true;
+  expandRow.style.display = "none";
+  carousel.classList.add("open");
+  renderCarousel(true);
+});
+document.getElementById("collapseBtn").addEventListener("click", function(){
+  state.open = false;
+  carousel.classList.remove("open");
+  expandRow.style.display = "block";
+  expandRow.scrollIntoView({behavior:"smooth", block:"center"});
+});
+
+/* ===================== UI: nav / reveal / sticky ===================== */
+var nav = document.getElementById("nav");
+var sticky = document.getElementById("stickyCta");
+var lastY = 0;
+function onScroll(){
+  var y = window.pageYOffset;
+  nav.classList.toggle("scrolled", y>40);
+  // 히어로 안에서는 sticky 숨김
+  var heroH = document.querySelector(".hero").offsetHeight;
+  if(sticky){ sticky.classList.toggle("hide", y < heroH*0.6); }
+  lastY = y;
+}
+window.addEventListener("scroll", onScroll, {passive:true});
+onScroll();
+
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+},{threshold:0.12});
+Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(el){ io.observe(el); });
+</script>
+</body>
+</html>
