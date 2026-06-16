@@ -178,15 +178,11 @@ h1,h2,h3{letter-spacing:-.02em; line-height:1.18; font-weight:800;}
 .tab.active{background:var(--red); color:#fff; border-color:var(--red); box-shadow:0 6px 18px rgba(192,57,43,.4);}
 
 .cases-panel{margin-top:24px;}
-.expand-row{text-align:center;}
-.btn-expand{background:rgba(255,255,255,.07); color:#fff; border:1px solid rgba(255,255,255,.18);
-  padding:14px 26px; border-radius:14px; font-weight:800; cursor:pointer; transition:all .2s; font-size:1rem;}
-.btn-expand:hover{background:rgba(255,255,255,.14); border-color:var(--yellow);}
 
 /* carousel */
-.carousel{display:none; margin-top:10px;}
-.carousel.open{display:block; animation:fade .4s ease;}
+.carousel{display:block; margin-top:10px;}
 @keyframes fade{from{opacity:0; transform:translateY(10px);}to{opacity:1; transform:none;}}
+.slide-fade{animation:fade .35s ease;}
 .car-stage{display:grid; grid-template-columns:minmax(0,360px) 1fr; gap:34px; align-items:center;}
 @media(max-width:780px){ .car-stage{grid-template-columns:1fr; gap:22px; justify-items:center;} }
 .slide{display:none;}
@@ -227,9 +223,6 @@ h1,h2,h3{letter-spacing:-.02em; line-height:1.18; font-weight:800;}
 .dot{width:30px;height:30px;border-radius:9px;border:1px solid rgba(255,255,255,.18);background:transparent;
   color:#bbb; font-weight:800; font-size:.85rem; cursor:pointer; transition:all .2s;}
 .dot.active{background:var(--yellow); color:#3a2e00; border-color:var(--yellow);}
-.car-foot{text-align:center; margin-top:20px;}
-.btn-collapse{background:transparent; border:1px solid rgba(255,255,255,.2); color:#ccc; padding:10px 22px; border-radius:12px; cursor:pointer; font-weight:700;}
-.btn-collapse:hover{border-color:#fff; color:#fff;}
 .counter{color:#9a9a9a; font-weight:800; font-size:.9rem; min-width:54px; text-align:center; font-feature-settings:"tnum";}
 
 /* ===== Products ===== */
@@ -411,9 +404,6 @@ footer a{color:#cfcfcf; text-decoration:underline; text-underline-offset:2px;}
     <div class="tabs" id="tabs" role="tablist"></div>
 
     <div class="cases-panel">
-      <div class="expand-row" id="expandRow">
-        <button class="btn-expand" id="expandBtn" type="button">📂 사례 펼쳐보기</button>
-      </div>
       <div class="carousel" id="carousel" aria-live="polite">
         <div class="car-stage">
           <div class="phone"><div class="phone-screen" id="phoneScreen"></div></div>
@@ -425,7 +415,6 @@ footer a{color:#cfcfcf; text-decoration:underline; text-underline-offset:2px;}
           <button class="car-arrow" id="nextBtn" aria-label="다음">›</button>
         </div>
         <div class="dots" id="dots" style="margin:16px auto 0;"></div>
-        <div class="car-foot"><button class="btn-collapse" id="collapseBtn" type="button">접기 ▲</button></div>
       </div>
     </div>
   </div>
@@ -718,17 +707,14 @@ function loadIG(cb){
 }
 function processIG(){ if(window.instgrm && window.instgrm.Embeds){ try{ window.instgrm.Embeds.process(); }catch(e){} } }
 
-/* ===================== 캐러셀 ===================== */
-var state = { ind:"food", idx:0, open:false };
-var loadedEmbeds = {}; // industry -> bool
+/* ===================== 캐러셀 (사례 상시 노출 · 활성 임베드만 lazy-load) ===================== */
+var state = { ind:"food", idx:0 };
 
 var tabsEl = document.getElementById("tabs");
 var phoneScreen = document.getElementById("phoneScreen");
 var slideInfo = document.getElementById("slideInfo");
 var dotsEl = document.getElementById("dots");
 var counterEl = document.getElementById("counter");
-var carousel = document.getElementById("carousel");
-var expandRow = document.getElementById("expandRow");
 
 function igBlock(shortcode){
   return '<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/'+shortcode+
@@ -751,24 +737,14 @@ function selectIndustry(key){
   Array.prototype.forEach.call(tabsEl.children, function(b,i){
     b.classList.toggle("active", INDUSTRIES[i].key===key);
   });
-  if(state.open){ renderCarousel(true); } // 펼친 상태면 새 업종으로 다시 그림
+  renderSlide(); // 새 업종의 첫 사례 임베드만 로드
 }
 
-function renderCarousel(forceLoad){
-  var list = CASES[state.ind];
-  // 슬라이드(폰 화면): 모든 임베드 blockquote를 한 번에 넣고 active만 표시
-  var html = "";
-  list.forEach(function(c,i){
-    html += '<div class="slide'+(i===state.idx?" active":"")+'" data-i="'+i+'">'+ igBlock(c.s) +'</div>';
-  });
-  phoneScreen.innerHTML = html;
-  // 임베드 처리 (업종별 1회)
-  if(forceLoad && !loadedEmbeds[state.ind]){
-    loadedEmbeds[state.ind] = true;
-    loadIG(function(){ processIG(); });
-  } else {
-    loadIG(function(){ processIG(); });
-  }
+// 현재 표시 사례 1개의 임베드만 폰 화면에 주입 → 활성 임베드만 lazy-load
+function renderSlide(){
+  var c = CASES[state.ind][state.idx];
+  phoneScreen.innerHTML = '<div class="slide active slide-fade">'+ igBlock(c.s) +'</div>';
+  loadIG(function(){ processIG(); });
   renderInfo();
   renderDots();
 }
@@ -794,32 +770,16 @@ function renderDots(){
   counterEl.textContent = (state.idx+1)+" / "+n;
 }
 
-function showActiveSlide(){
-  Array.prototype.forEach.call(phoneScreen.children, function(s,i){
-    s.classList.toggle("active", i===state.idx);
-  });
-  renderInfo(); renderDots(); processIG();
-}
 function goTo(i){
   var n = CASES[state.ind].length;
   state.idx = (i+n)%n;
-  showActiveSlide();
+  renderSlide(); // 이전/다음 시 해당 사례 임베드만 lazy-load
 }
 document.getElementById("prevBtn").addEventListener("click", function(){ goTo(state.idx-1); });
 document.getElementById("nextBtn").addEventListener("click", function(){ goTo(state.idx+1); });
 
-document.getElementById("expandBtn").addEventListener("click", function(){
-  state.open = true;
-  expandRow.style.display = "none";
-  carousel.classList.add("open");
-  renderCarousel(true);
-});
-document.getElementById("collapseBtn").addEventListener("click", function(){
-  state.open = false;
-  carousel.classList.remove("open");
-  expandRow.style.display = "block";
-  expandRow.scrollIntoView({behavior:"smooth", block:"center"});
-});
+// 진입 시 활성 탭 첫 사례 즉시 노출
+renderSlide();
 
 /* ===================== UI: nav / reveal / sticky ===================== */
 var nav = document.getElementById("nav");
