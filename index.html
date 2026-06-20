@@ -158,7 +158,7 @@ h1,h2,h3{letter-spacing:-.02em; line-height:1.18; font-weight:800;}
 .cases > .wrap{position:relative; z-index:2;}
 .cases .h-sec{color:#fff;}
 .cases .sub{color:#c9c9c9;}
-.disclaimer-pill{display:inline-block; font-size:.8rem; color:#ffce5e; border:1px solid rgba(255,212,59,.3);
+.disclaimer-pill{display:inline-block; font-size:1.2rem; color:#ffce5e; border:1px solid rgba(255,212,59,.3);
   background:rgba(255,212,59,.07); padding:5px 13px; border-radius:999px; margin-top:14px;}
 .insight{background:linear-gradient(160deg,rgba(192,57,43,.16),rgba(40,40,42,.5));
   border:1px solid rgba(255,255,255,.1); border-radius:var(--radius); padding:28px 26px; margin:34px 0 30px;}
@@ -232,7 +232,7 @@ h1,h2,h3{letter-spacing:-.02em; line-height:1.18; font-weight:800;}
   transition:transform .25s, box-shadow .25s; position:relative;}
 .p-card:hover{transform:translateY(-5px); box-shadow:var(--shadow);}
 .p-card.feat{border:2px solid var(--red); box-shadow:0 14px 40px rgba(192,57,43,.14);}
-.p-badge{position:absolute; top:-13px; left:28px; background:var(--red); color:#fff; font-size:.78rem; font-weight:800; padding:5px 13px; border-radius:999px;}
+.p-badge{position:absolute; top:-13px; left:28px; background:var(--red); color:#fff; font-size:1.17rem; font-weight:800; padding:5px 13px; border-radius:999px;}
 .p-card h3{font-size:1.32rem; margin-bottom:6px;}
 .p-card .tagline{color:var(--red); font-weight:800; font-size:.95rem; margin-bottom:16px;}
 .p-card ul{list-style:none; display:grid; gap:10px; margin-bottom:24px; flex:1;}
@@ -311,30 +311,19 @@ footer a{color:#cfcfcf; text-decoration:underline; text-underline-offset:2px;}
 .privacy th, .privacy td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top;}
 .privacy th{background:#ece5d8; font-weight:700; color:var(--ink); white-space:nowrap;}
 
-/* ===== Cookie notice (non-blocking) ===== */
-.cookie-bar{position:fixed; left:12px; right:12px; bottom:12px; z-index:60; max-width:680px; margin:0 auto;
-  background:rgba(20,20,20,.95); color:#eee; border:1px solid rgba(255,255,255,.12); border-radius:14px;
-  padding:13px 16px; display:flex; gap:14px; align-items:center; box-shadow:0 12px 40px rgba(0,0,0,.4);
-  font-size:.88rem; line-height:1.55;}
-.cookie-bar.hide{display:none;}
-.cookie-bar a{color:var(--yellow); text-decoration:underline; text-underline-offset:2px;}
-.cookie-bar .ck-close{flex:none; background:var(--yellow); color:#3a2e00; border:0; padding:9px 16px;
-  border-radius:10px; font-weight:800; cursor:pointer; font-size:.86rem; white-space:nowrap;}
-@media(max-width:720px){ .cookie-bar{bottom:84px; flex-direction:column; align-items:stretch; text-align:center;} }
-
 /* ===== Portfolio carousel ===== */
 .pf-viewport{position:relative;}
 .pf-track{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch; padding:6px 4px 18px; scrollbar-width:none;}
 .pf-track::-webkit-scrollbar{display:none;}
 .pf-track.pf-grab{cursor:grabbing; scroll-snap-type:none; user-select:none;}
-.pf-card{flex:0 0 240px; scroll-snap-align:center;}
+.pf-card{flex:0 0 240px; scroll-snap-align:center; scroll-snap-stop:always;}
 .pf-media{position:relative; width:100%; aspect-ratio:9/16; border-radius:16px; overflow:hidden;
   background:#000; box-shadow:var(--shadow);}
 .pf-thumb{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:2; transition:opacity .45s ease;}
 .pf-mount{position:absolute; inset:0; z-index:1;}
 .pf-media iframe{position:absolute; inset:0; width:100%; height:100%; border:0; z-index:1;}
-.pf-tag{margin-top:10px; display:inline-block; font-size:.78rem; font-weight:800; color:var(--red);
+.pf-tag{margin-top:10px; display:inline-block; font-size:1.17rem; font-weight:800; color:var(--red);
   background:rgba(192,57,43,.08); padding:5px 12px; border-radius:999px;}
 .pf-arrow{position:absolute; top:calc(50% - 12px); transform:translateY(-50%); z-index:5;
   width:44px; height:44px; border-radius:999px; border:0; cursor:pointer; color:#fff;
@@ -620,12 +609,6 @@ footer a{color:#cfcfcf; text-decoration:underline; text-underline-offset:2px;}
   </button>
 </div>
 
-<!-- cookie notice (non-blocking) -->
-<div class="cookie-bar hide" id="cookieBar" role="region" aria-label="쿠키 안내">
-  <span>이 사이트는 방문 분석·광고 측정을 위해 쿠키를 사용합니다. 자세한 내용은 <a href="#privacy">개인정보 처리방침</a>을 확인하세요.</span>
-  <button class="ck-close" id="cookieOk" type="button">확인</button>
-</div>
-
 <!-- iOS escape overlay -->
 <div class="o-overlay" id="iosOverlay">
   <div class="o-card">
@@ -841,21 +824,6 @@ var io = new IntersectionObserver(function(entries){
   entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
 },{threshold:0.12});
 Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(el){ io.observe(el); });
-
-/* ===================== 쿠키 안내 (비차단형) ===================== */
-(function(){
-  var bar = document.getElementById("cookieBar");
-  if(!bar) return;
-  var KEY = "svg_cookie_ack";
-  var ack = false;
-  try{ ack = localStorage.getItem(KEY) === "1"; }catch(e){}
-  if(!ack){ bar.classList.remove("hide"); }
-  var ok = document.getElementById("cookieOk");
-  if(ok){ ok.addEventListener("click", function(){
-    bar.classList.add("hide");
-    try{ localStorage.setItem(KEY, "1"); }catch(e){}
-  }); }
-})();
 
 /* ===================== 포트폴리오 캐러셀 (썸네일-우선 · 보이는 것만 재생) ===================== */
 (function(){
