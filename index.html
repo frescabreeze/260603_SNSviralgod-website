@@ -321,6 +321,31 @@ footer a{color:#cfcfcf; text-decoration:underline; text-underline-offset:2px;}
 .cookie-bar .ck-close{flex:none; background:var(--yellow); color:#3a2e00; border:0; padding:9px 16px;
   border-radius:10px; font-weight:800; cursor:pointer; font-size:.86rem; white-space:nowrap;}
 @media(max-width:720px){ .cookie-bar{bottom:84px; flex-direction:column; align-items:stretch; text-align:center;} }
+
+/* ===== Portfolio carousel ===== */
+.pf-viewport{position:relative;}
+.pf-track{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch; padding:6px 4px 18px; scrollbar-width:none;}
+.pf-track::-webkit-scrollbar{display:none;}
+.pf-track.pf-grab{cursor:grabbing; scroll-snap-type:none; user-select:none;}
+.pf-card{flex:0 0 240px; scroll-snap-align:center;}
+.pf-media{position:relative; width:100%; aspect-ratio:9/16; border-radius:16px; overflow:hidden;
+  background:#000; box-shadow:var(--shadow);}
+.pf-thumb{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:2; transition:opacity .45s ease;}
+.pf-mount{position:absolute; inset:0; z-index:1;}
+.pf-media iframe{position:absolute; inset:0; width:100%; height:100%; border:0; z-index:1;}
+.pf-tag{margin-top:10px; display:inline-block; font-size:.78rem; font-weight:800; color:var(--red);
+  background:rgba(192,57,43,.08); padding:5px 12px; border-radius:999px;}
+.pf-arrow{position:absolute; top:calc(50% - 12px); transform:translateY(-50%); z-index:5;
+  width:44px; height:44px; border-radius:999px; border:0; cursor:pointer; color:#fff;
+  background:rgba(20,20,20,.82); font-size:1.6rem; line-height:1;
+  display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow);}
+.pf-arrow:hover{background:var(--red);}
+.pf-prev{left:0;} .pf-next{right:0;}
+@media(max-width:720px){
+  .pf-card{flex-basis:74vw; max-width:300px;}
+  .pf-arrow{display:none;}
+}
 </style>
 </head>
 <body>
@@ -359,6 +384,22 @@ footer a{color:#cfcfcf; text-decoration:underline; text-underline-offset:2px;}
     </div>
   </div>
   <a class="scroll-cue" href="#formula" aria-label="아래로">▼</a>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="sec pf" id="portfolio">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">우리가 만든 결과물</span>
+      <h2 class="h-sec">사장님 가게를 위한 <span class="hl">숏폼 포트폴리오</span></h2>
+      <p class="sub">기획과 촬영 가이드부터 잡아드립니다. 가이드대로 찍어 보내주시면, 편집까지 끝내 드려요. 옆으로 밀어 업종별 결과물을 둘러보세요.</p>
+    </div>
+    <div class="pf-viewport reveal">
+      <button class="pf-arrow pf-prev" id="pfPrev" type="button" aria-label="이전 영상">‹</button>
+      <div class="pf-track" id="pfTrack" role="list" aria-label="포트폴리오 영상 목록"></div>
+      <button class="pf-arrow pf-next" id="pfNext" type="button" aria-label="다음 영상">›</button>
+    </div>
+  </div>
 </section>
 
 <!-- 6 FORMULAS -->
@@ -814,6 +855,131 @@ Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(el){
     bar.classList.add("hide");
     try{ localStorage.setItem(KEY, "1"); }catch(e){}
   }); }
+})();
+
+/* ===================== 포트폴리오 캐러셀 (썸네일-우선 · 보이는 것만 재생) ===================== */
+(function(){
+  var PF = [
+    {id:"He35NOd4RG0", tag:"음식"},
+    {id:"xPXk-yGtudw", tag:"음식"},
+    {id:"sDQea7T3wI4", tag:"음식"},
+    {id:"_iuyCycAQV4", tag:"음식"},
+    {id:"XY9dMq8Li90", tag:"음식"},
+    {id:"6eCN1phh5YM", tag:"네일"},
+    {id:"P9Ujz58SJiA", tag:"UGC"},
+    {id:"FSoxE-U9dNI", tag:"AI"}
+  ];
+  var track = document.getElementById("pfTrack");
+  if(!track) return;
+
+  // 카드 생성: 기본은 썸네일만 (iframe 없음)
+  PF.forEach(function(v, i){
+    var card = document.createElement("div");
+    card.className = "pf-card";
+    card.setAttribute("role","listitem");
+    card.setAttribute("data-i", i);
+    card.innerHTML =
+      '<div class="pf-media">'+
+        '<img class="pf-thumb" loading="lazy" decoding="async" '+
+          'src="https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg" alt="포트폴리오 영상 '+(i+1)+'">'+
+        '<div class="pf-mount"></div>'+
+      '</div>'+
+      '<div class="pf-tag">'+v.tag+'</div>';
+    track.appendChild(card);
+    v._card = card;
+    v._mount = card.querySelector(".pf-mount");
+    v._thumb = card.querySelector(".pf-thumb");
+  });
+
+  // YouTube IFrame API 1회 로드 (전역 콜백 보존)
+  var YT_READY = false, pending = [];
+  function ensureAPI(){
+    if(window.YT && window.YT.Player){ YT_READY = true; return; }
+    if(window.__pfYTLoading) return;
+    window.__pfYTLoading = true;
+    var prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function(){
+      if(typeof prev === "function"){ try{ prev(); }catch(e){} }
+      YT_READY = true;
+      pending.splice(0).forEach(function(fn){ try{ fn(); }catch(e){} });
+    };
+    var s = document.createElement("script");
+    s.src = "https://www.youtube.com/iframe_api"; s.async = true;
+    document.body.appendChild(s);
+  }
+  function whenReady(fn){ if(YT_READY){ fn(); } else { pending.push(fn); ensureAPI(); } }
+
+  // 화면에 들어온 카드만 플레이어(iframe) 생성
+  function createPlayer(v){
+    if(v._player || v._creating) return;
+    v._creating = true;
+    whenReady(function(){
+      v._player = new YT.Player(v._mount, {
+        videoId: v.id,
+        playerVars: {
+          autoplay:1, mute:1, controls:0, loop:1, playlist:v.id,
+          modestbranding:1, rel:0, playsinline:1
+        },
+        events: {
+          onReady: function(e){
+            try{ e.target.mute(); }catch(_){}
+            if(v._wantPlay){ try{ e.target.playVideo(); }catch(_){} }
+          },
+          onStateChange: function(e){
+            if(e.data === YT.PlayerState.PLAYING && v._thumb){ v._thumb.style.opacity = "0"; }
+          }
+        }
+      });
+    });
+  }
+  function play(v){
+    v._wantPlay = true;
+    if(!v._player){ createPlayer(v); return; }
+    try{ v._player.mute(); v._player.playVideo(); }catch(_){}
+    if(v._thumb){ v._thumb.style.opacity = "0"; }
+  }
+  function pause(v){
+    v._wantPlay = false;
+    if(v._player){ try{ v._player.pauseVideo(); }catch(_){} }
+  }
+
+  // 가시성 추적 → 가장 잘 보이는 최대 2개만 재생, 나머지 일시정지
+  var ratios = {}, MAX_PLAY = 2;
+  var ob = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      var i = en.target.getAttribute("data-i");
+      ratios[i] = en.isIntersecting ? en.intersectionRatio : 0;
+    });
+    var order = PF.map(function(v,i){ return {v:v, i:i, r: ratios[i]||0}; })
+                  .filter(function(o){ return o.r > 0.5; })
+                  .sort(function(a,b){ return b.r - a.r; });
+    var playSet = {};
+    order.slice(0, MAX_PLAY).forEach(function(o){ playSet[o.i] = true; play(o.v); });
+    PF.forEach(function(v,i){ if(!playSet[i]){ pause(v); } });
+  }, {threshold:[0, 0.25, 0.5, 0.75, 1]});
+  PF.forEach(function(v){ ob.observe(v._card); });
+
+  // 데스크톱: 좌우 화살표
+  function scrollByCards(dir){
+    var card = track.querySelector(".pf-card");
+    if(!card) return;
+    track.scrollBy({left: dir*(card.getBoundingClientRect().width + 16), behavior:"smooth"});
+  }
+  var prevB = document.getElementById("pfPrev"), nextB = document.getElementById("pfNext");
+  if(prevB){ prevB.addEventListener("click", function(){ scrollByCards(-1); }); }
+  if(nextB){ nextB.addEventListener("click", function(){ scrollByCards(1); }); }
+
+  // 데스크톱: 포인터 드래그 스크롤
+  var down=false, startX=0, startScroll=0;
+  track.addEventListener("pointerdown", function(e){
+    if(e.pointerType==="touch") return;
+    down=true; startX=e.clientX; startScroll=track.scrollLeft; track.classList.add("pf-grab");
+  });
+  window.addEventListener("pointermove", function(e){
+    if(!down) return;
+    track.scrollLeft = startScroll - (e.clientX - startX);
+  });
+  window.addEventListener("pointerup", function(){ if(down){ down=false; track.classList.remove("pf-grab"); } });
 })();
 </script>
 </body>
