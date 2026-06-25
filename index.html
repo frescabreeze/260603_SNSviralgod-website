@@ -335,6 +335,15 @@ footer a{color:#cfcfcf; text-decoration:underline; text-underline-offset:2px;}
   .pf-card{flex-basis:74vw; max-width:300px;}
   .pf-arrow{display:none;}
 }
+
+/* ===== 왜 숏폼인가 — 단독 세로 영상 (캐러셀과 동일: 무음·루프·lazy) ===== */
+.why-short{margin:38px auto 4px; max-width:320px; text-align:center;}
+.why-short .ws-copy{font-size:1rem; color:var(--muted); margin-bottom:14px; line-height:1.5;}
+.ws-media{position:relative; width:100%; aspect-ratio:9/16; border-radius:16px; overflow:hidden;
+  background:#000; box-shadow:var(--shadow);}
+.ws-thumb{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:2; transition:opacity .45s ease;}
+.ws-mount{position:absolute; inset:0; z-index:1;}
+.ws-media iframe{position:absolute; inset:0; width:100%; height:100%; border:0; z-index:1;}
 </style>
 </head>
 <body>
@@ -509,6 +518,16 @@ footer a{color:#cfcfcf; text-decoration:underline; text-underline-offset:2px;}
       <div class="step reveal"><div class="sn">1</div><h4>상담 · 진단</h4><p>카카오로 업종·상황을 알려주시면 방향과 컨셉을 함께 잡습니다.</p></div>
       <div class="step reveal"><div class="sn">2</div><h4>기획 · 제작</h4><p>떡상 공식에 맞춰 기획하고, 촬영 가이드와 편집까지 진행합니다.</p></div>
       <div class="step reveal"><div class="sn">3</div><h4>업로드 · 개선</h4><p>캡션·해시태그까지 세팅해 올리고, 성과를 보며 다음 편을 개선합니다.</p></div>
+    </div>
+
+    <!-- 왜 숏폼인가 (정보형 영상 단독 임베드) -->
+    <div class="why-short reveal">
+      <p class="ws-copy">광고비가 아니라 ‘첫 3초’가 손님을 부릅니다 — 왜 지금 숏폼이어야 하는지, 1분이면 충분합니다.</p>
+      <div class="ws-media" id="whyShortMedia">
+        <img class="ws-thumb" loading="lazy" decoding="async"
+          src="https://i.ytimg.com/vi/R_5JhbHFiMk/hqdefault.jpg" alt="왜 숏폼인가 영상">
+        <div class="ws-mount"></div>
+      </div>
     </div>
 
     <div class="faq">
@@ -835,7 +854,8 @@ Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(el){
     {id:"XY9dMq8Li90", tag:"음식"},
     {id:"6eCN1phh5YM", tag:"네일"},
     {id:"P9Ujz58SJiA", tag:"UGC"},
-    {id:"FSoxE-U9dNI", tag:"AI"}
+    {id:"FSoxE-U9dNI", tag:"AI"},
+    {id:"2R3lOXmJyMI", tag:"분양"}
   ];
   var track = document.getElementById("pfTrack");
   if(!track) return;
@@ -948,6 +968,33 @@ Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(el){
     track.scrollLeft = startScroll - (e.clientX - startX);
   });
   window.addEventListener("pointerup", function(){ if(down){ down=false; track.classList.remove("pf-grab"); } });
+})();
+
+/* ===================== 왜 숏폼인가 — 단독 영상 (썸네일-우선 · 보일 때만 iframe · 무음·루프) ===================== */
+(function(){
+  var box = document.getElementById("whyShortMedia");
+  if(!box) return;
+  var VID = "R_5JhbHFiMk";
+  var mount = box.querySelector(".ws-mount");
+  var thumb = box.querySelector(".ws-thumb");
+  var mounted = false;
+  var ob = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting || mounted) return;
+      mounted = true;
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube.com/embed/"+VID+
+        "?autoplay=1&mute=1&loop=1&playlist="+VID+
+        "&controls=0&modestbranding=1&rel=0&playsinline=1";
+      f.title = "왜 숏폼인가 영상";
+      f.setAttribute("allow","autoplay; encrypted-media; picture-in-picture");
+      f.setAttribute("allowfullscreen","");
+      mount.appendChild(f);
+      if(thumb){ thumb.style.opacity = "0"; }
+      ob.unobserve(box);
+    });
+  },{threshold:0.5});
+  ob.observe(box);
 })();
 </script>
 </body>
