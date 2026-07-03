@@ -932,16 +932,25 @@ Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(el){
     if(v._player){ try{ v._player.pauseVideo(); }catch(_){} }
   }
 
-  // 가시성 추적 → 가장 잘 보이는 최대 2개만 재생, 나머지 일시정지
+  // 가시성 추적 → 포커스 지점(중간은 트랙 중앙, 양 끝단은 트랙 가장자리)에 가장 가까운 최대 2개만 재생, 나머지 일시정지
   var ratios = {}, MAX_PLAY = 2;
   var ob = new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       var i = en.target.getAttribute("data-i");
       ratios[i] = en.isIntersecting ? en.intersectionRatio : 0;
     });
-    var order = PF.map(function(v,i){ return {v:v, i:i, r: ratios[i]||0}; })
+    // 끝까지 스크롤하면 마지막 카드는 중앙이 아니라 가장자리에 오므로, 스크롤 극단에서는 포커스를 트랙 끝으로 이동
+    var trackRect = track.getBoundingClientRect();
+    var maxScroll = track.scrollWidth - track.clientWidth;
+    var focusX = track.scrollLeft <= 1 ? trackRect.left
+               : (track.scrollLeft >= maxScroll - 1 ? trackRect.right
+               : (trackRect.left + trackRect.right) / 2);
+    var order = PF.map(function(v,i){
+                    var rect = v._card.getBoundingClientRect();
+                    return {v:v, i:i, r: ratios[i]||0, d: Math.abs((rect.left + rect.width/2) - focusX)};
+                  })
                   .filter(function(o){ return o.r > 0.5; })
-                  .sort(function(a,b){ return b.r - a.r; });
+                  .sort(function(a,b){ return a.d - b.d; });
     var playSet = {};
     order.slice(0, MAX_PLAY).forEach(function(o){ playSet[o.i] = true; play(o.v); });
     PF.forEach(function(v,i){ if(!playSet[i]){ pause(v); } });
