@@ -933,17 +933,14 @@ Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(el){
   }
 
   // 가시성 추적 → 포커스 지점(중간은 트랙 중앙, 양 끝단은 트랙 가장자리)에 가장 가까운 최대 2개만 재생, 나머지 일시정지
-  var ratios = {}, MAX_PLAY = 2;
-  var ob = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      var i = en.target.getAttribute("data-i");
-      ratios[i] = en.isIntersecting ? en.intersectionRatio : 0;
-    });
-    // 끝까지 스크롤하면 마지막 카드는 중앙이 아니라 가장자리에 오므로, 스크롤 극단에서는 포커스를 트랙 끝으로 이동
+  var ratios = {}, MAX_PLAY = 2, lastPlayKey = null;
+  // 재생 슬롯 재계산. IO 발화 외에 스크롤 정지 시점에도 호출된다(끝에 정지하면 IO가 안 뛰므로).
+  function evaluatePlayback(){
+    // 포커스를 순간 scrollLeft가 아니라 스크롤 경계(±8px)로 안정화 — 관성 정지 직전 값에 흔들리지 않게
     var trackRect = track.getBoundingClientRect();
     var maxScroll = track.scrollWidth - track.clientWidth;
-    var focusX = track.scrollLeft <= 1 ? trackRect.left
-               : (track.scrollLeft >= maxScroll - 1 ? trackRect.right
+    var focusX = track.scrollLeft <= 8 ? trackRect.left
+               : (maxScroll - track.scrollLeft <= 8 ? trackRect.right
                : (trackRect.left + trackRect.right) / 2);
     var order = PF.map(function(v,i){
                     var rect = v._card.getBoundingClientRect();
@@ -952,10 +949,31 @@ Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(el){
                   .filter(function(o){ return o.r > 0.5; })
                   .sort(function(a,b){ return a.d - b.d; });
     var playSet = {};
-    order.slice(0, MAX_PLAY).forEach(function(o){ playSet[o.i] = true; play(o.v); });
+    order.slice(0, MAX_PLAY).forEach(function(o){ playSet[o.i] = true; });
+    var key = Object.keys(playSet).sort().join(",");
+    if(key === lastPlayKey) return;              // 같은 선정이면 재적용 생략(중복 방지)
+    lastPlayKey = key;
+    order.slice(0, MAX_PLAY).forEach(function(o){ play(o.v); });
     PF.forEach(function(v,i){ if(!playSet[i]){ pause(v); } });
+  }
+  var ob = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      var i = en.target.getAttribute("data-i");
+      ratios[i] = en.isIntersecting ? en.intersectionRatio : 0;
+    });
+    evaluatePlayback();
   }, {threshold:[0, 0.25, 0.5, 0.75, 1]});
   PF.forEach(function(v){ ob.observe(v._card); });
+  // 스크롤이 끝에 정지하면 IO가 발화하지 않으므로, 정지 시점에도 재평가(scrollend 우선, 미지원 시 scroll 디바운스)
+  if("onscrollend" in track || "onscrollend" in window){
+    track.addEventListener("scrollend", evaluatePlayback);
+  } else {
+    var _scrollSettleTimer;
+    track.addEventListener("scroll", function(){
+      clearTimeout(_scrollSettleTimer);
+      _scrollSettleTimer = setTimeout(evaluatePlayback, 120);
+    });
+  }
 
   // 데스크톱: 좌우 화살표
   function scrollByCards(dir){
